@@ -1,9 +1,9 @@
-# sample-form-test-react
+# sample-react-dropdown-tabs
 
 ## Use git clone.
 
 ```
-git clone https://github.com/jaman7/sample-form-test-react.git
+git clone https://github.com/jaman7/react-dropdown-tabs.git
 ```
 
 ## required
