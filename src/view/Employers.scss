@@ -1,0 +1,34 @@
+$grey-color: #ddd;
+$green-color: #1fdf53;
+$light-color: #f1f1f1;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  & li {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    font-size: 15px;
+
+    & .name {
+      font-weight: 700;
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  border: 1px solid $grey-color;
+  font-size: 16px;
+  padding: 4px;
+
+  &::placeholder {
+    font-size: 14px;
+    color: $grey-color;
+  }
+}
