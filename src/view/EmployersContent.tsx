@@ -8,26 +8,25 @@ export interface IProps {
 }
 
 const EmployersContent = ({ data = [], position }: IProps) => {
-  const [searchQueries, setSearchQueries] = useState<{ [key: string]: string }>({});
+  const [searchQueries, setSearchQueries] = useState<string>('');
 
   const handleSearchChange = useCallback(
     (query: string) => {
       if (!position) return;
-      setSearchQueries(prevQueries => ({
-        ...prevQueries,
-        [position]: query,
-      }));
+      setSearchQueries(query);
     },
     [position]
   );
 
   const filteredList = useMemo(() => {
     if (!position) return data;
-    const query = searchQueries[position]?.toLowerCase();
+    const query = searchQueries?.toLowerCase();
     if (!query) return data;
 
-    return data.filter(
-      el => el.name.toLowerCase().includes(query) || el.email.toLowerCase().includes(query) || el.phone.toLowerCase().includes(query)
+    return (
+      data?.filter(
+        el => el.name.toLowerCase().includes(query) || el.email.toLowerCase().includes(query) || el.phone.toLowerCase().includes(query)
+      ) ?? []
     );
   }, [data, position, searchQueries]);
 
@@ -37,7 +36,7 @@ const EmployersContent = ({ data = [], position }: IProps) => {
         className="input"
         type="text"
         placeholder="Search by name, email, or phone"
-        value={position ? searchQueries[position] || '' : ''}
+        value={position ? searchQueries || '' : ''}
         onChange={e => handleSearchChange(e.target.value)}
       />
       <ul className="list">{filteredList?.map(el => <EmployersListsItem key={el._id} {...el} />)}</ul>
